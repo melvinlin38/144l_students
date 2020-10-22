@@ -134,3 +134,28 @@ write_csv(socal.fires, "Output_Data/week1/socal_fires_data.csv")
 ggsave(filename = "Fire_Incidents", all_incidents.plot, device = "jpeg", "Output_Data/week1/" )
 
 #### Data Plot #### 
+
+ggplot(socal.fires, aes(x = Start_Date, y = Total_Acres_Burned)) +
+  geom_point(aes(color = Cause)) +
+  ggtitle("CA South Coast Major Fires \n2014 - 2018 by Cause") +
+  labs(x = "", y = "Total Acres Burned", color ="Cause") + 
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  facet_grid(rows = "County_Unit", scales = "free")
+
+# This shows the CA South Coast Major Fires from 2014-2018 by cause. It is unfortunate that most of the fires have unknown causes, as they can possbily be more preventable/containable if it was known what had caused it.
+
+socal.fires123 <- data %>% 
+  select(County_Unit:Cause) %>% 
+  filter(County_Unit %in% c("SANTA BARBARA", "VENTURA", "LOS ANGELES", "SAN DIEGO", "ORANGE", "VENTURA/SANTA BARBARA") & Total_Acres_Burned >= 500) %>% 
+  arrange(desc(Total_Acres_Burned))
+
+ggplot(socal.fires123, aes(x = Start_Date, y = Controlled_Date)) +
+  geom_point(aes(color = Origin_DPA_Agency)) +
+  ggtitle("CA South Coast Major Fires \n2014 - 2018 by DPA Agency") +
+  labs(x = "Fire Start Date", y = "Controlled Date", color ="DPA Agency") + 
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  facet_grid(rows = "County_Unit", scales = "free")
+
+# This shows the CA South Coast major fires by the DPA agencies. It shows how quickly/slowly each was able to control the fires, and how many fires each was responsible for containing.
