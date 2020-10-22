@@ -132,3 +132,5 @@ saveRDS(socal.fires, file = "Output_Data/week1/socal_fires_data.rds")
 write_csv(socal.fires, "Output_Data/week1/socal_fires_data.csv")
 
 ggsave(filename = "Fire_Incidents", all_incidents.plot, device = "jpeg", "Output_Data/week1/" )
+
+#### Data Plot #### 
