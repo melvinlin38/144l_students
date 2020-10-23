@@ -159,3 +159,29 @@ ggplot(socal.fires123, aes(x = Start_Date, y = Controlled_Date)) +
   facet_grid(rows = "County_Unit", scales = "free")
 
 # This shows the CA South Coast major fires by the DPA agencies. It shows how quickly/slowly each was able to control the fires, and how many fires each was responsible for containing.
+
+
+#### Loading Thomas Fire Dataset ####
+
+excel_sheets("Input_Data/week1/Thomas_Fire_Progression.xlsx")
+
+metadata5 <- read_excel("Input_Data/week1/Thomas_Fire_Progression.xlsx", sheet = "Metadata")
+view(metadata5)
+data5 <- read_excel("Input_Data/week1/Thomas_Fire_Progression.xlsx", sheet = "Data")
+view(data5)
+
+thomas.fire <- data5 %>% 
+  mutate_at(vars("PM10"), replace_na, 0)
+
+ggplot(thomas.fire, aes(x = Date, y = Acres_Burned)) +
+  geom_point(aes(color = PM10)) +
+  ggtitle("Thomas Fire by PM10") +
+  labs(x = "Date", y = "Acres Burned", color ="PM10") + 
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  scale_color_gradientn(colours = rainbow(5))
+
+#This graph shows the progression of the Thomas fire with the amount of PM10 at each date. It is important to know how particulate matter can affect us, and how it can progress as the fire continues to burn more acres of land. 
+  
+
+ 
