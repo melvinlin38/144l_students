@@ -230,5 +230,11 @@ bar.data1 %>%
   labs(x = "", y = expression ("Δ Bacterial Carbon, µmol C L"^-1)) +
   theme_bw()
 ```
+# Save Data
 
+```{r}
+saveRDS(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.rds")
 
+write_csv(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.csv")
+
+```

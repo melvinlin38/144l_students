@@ -470,3 +470,10 @@ bar.data1 %>%
 ```
 
 ![](Bacterial-Abundance-Analysis_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+\# Save Data
+
+``` r
+saveRDS(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.rds")
+
+write_csv(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.csv")
+```
