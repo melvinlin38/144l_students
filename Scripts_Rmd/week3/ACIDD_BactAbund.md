@@ -534,3 +534,5 @@ lag + delta_bc + mew + doubling + plot_annotation(tag_levels = "a")
 ``` r
 saveRDS(averages, "~/GITHUB/144l_students/Output_Data/week3/ACIDD_Exp_Processed_BactAbund.rds")
 ```
+
+?subset() ?dplyr ?group\_by ?group()
