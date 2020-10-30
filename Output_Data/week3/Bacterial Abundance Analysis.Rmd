@@ -53,7 +53,7 @@ glimpse(cells1)
 
 #Plot growth curves
 
-```{r fig.height=4, fig.width=6}
+```{r echo=TRUE, fig.height=4, fig.width=6}
 custom.colors <- c("Control" = "#377EB8", "Ash Leachate" = "#4DAF4A", "Mud Leachate" = "#E41A1C", "Glucose_Nitrate_Phosphate" = "#FF7F00")
 levels <- c("Control", "Ash Leachate", "Mud Leachate", "Glucose_Nitrate_Phosphate")
 
@@ -82,7 +82,7 @@ ln_cells <- cells1 %>%
   ungroup()
 ```
 
-```{r fig.height=4, fig.width=15}
+```{r echo=TRUE, fig.height=4, fig.width=15}
 ln_cells %>% 
   mutate(dna = ifelse(DNA_Sample == T, "*", NA)) %>% 
   ggplot(aes(x = days, y = diff_ln_cells, group = interaction(Treatment, Bottle))) +
@@ -107,7 +107,7 @@ Where exponential growth occurs for each bottle:
 - Bottle G ~0 - 0.6 d (T1 - T3)
 - Bottle H ~0 - 0.6 d (T1 - T3)
 
-```{r}
+```{r echo=TRUE}
 growth1 <- ln_cells %>% 
   mutate(exp_start = ifelse(Bottle == "A", 1, NA),
          exp_start = ifelse(Bottle == "B", 1, exp_start),
@@ -157,7 +157,7 @@ glimpse(bactcarbon1)
 
 # Treatment averages
 
-```{r}
+```{r echo=TRUE}
 averages1 <- bactcarbon1 %>% 
   group_by(Treatment, Timepoint) %>% 
   mutate(ave_bc = mean(bc),
@@ -178,7 +178,7 @@ averages1 <- bactcarbon1 %>%
 glimpse(averages1)
 ```
 
-```{r}
+```{r echo=TRUE}
 averages1 %>% 
   ggplot(aes(x = days, y = ave_bc), group = interaction(Treatment, Bottle)) +
   geom_errorbar(aes(ymin = ave_bc - sd_bc, ymax = ave_bc + sd_bc, color = factor(Treatment, levels = levels)), width = 0.1) +
@@ -199,7 +199,7 @@ bar.data1 <- averages1 %>%
   distinct()
 ```
 Mew
-```{r}
+```{r echo=TRUE}
 bar.data1 %>% 
   ggplot(aes(x = factor(Treatment, levels = levels), y = ave_mew), group = interaction(Bottle, Treatment)) +
   geom_col(color = "black", fill = "white") +
