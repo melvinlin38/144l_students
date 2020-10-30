@@ -237,4 +237,5 @@ saveRDS(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalys
 
 write_csv(averages1, "~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.csv")
 
+
 ```
