@@ -170,7 +170,7 @@ pivoted %>%
 
 ![](ACIDD_TOC_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-The analytical detection limit for out TOC analysis is \~1.5µmol C
+The analytical detection limit for our TOC analysis is \~1.5µmol C
 L<sup>-1</sup>.
 
 \#TOC v PTOC (bottle v vial samples)
@@ -207,8 +207,8 @@ reg
     ## 
     ## Regression results
     ##   Method Intercept     Slope Angle (degrees) P-perm (1-tailed)
-    ## 1    OLS  20.53052 0.7106186        35.39831              0.09
-    ## 2     MA  20.05813 0.7171693        35.64693              0.09
+    ## 1    OLS  20.53052 0.7106186        35.39831               0.1
+    ## 2     MA  20.05813 0.7171693        35.64693               0.1
     ## 3    SMA  19.83558 0.7202554        35.76352                NA
     ## 
     ## Confidence intervals

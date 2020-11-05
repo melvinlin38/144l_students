@@ -1,11 +1,9 @@
 ---
-title: "ACIDD_TOC"
+title: "TOC/DOC Analysis"
 author: "Melvin Lin"
-date: "11/1/2020"
+date: "11/5/2020"
 output: github_document
 ---
-
-# Intro
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -13,30 +11,29 @@ library(readxl)
 library(lubridate)
 ```
 
-This document shows how **individual bottle** TOC/DOC data from ACIDD remineralization experiments were processed, QC'd and analyzed
+# Import Data
 
-# Import data
 
 ```{r}
-excel_sheets("~/GITHUB/144l_students/Input_Data/week4/ACIDD_Exp_TOC.xlsx")
+excel_sheets("~/GITHUB/144l_students/Input_Data/week4/144L_2018_Exp_TOC.xlsx")
 
-metadata <- read_excel("~/GITHUB/144l_students/Input_Data/week4/ACIDD_Exp_TOC.xlsx", sheet = "Metadata")
+metadata1 <- read_excel("~/GITHUB/144l_students/Input_Data/week4/144L_2018_Exp_TOC.xlsx", sheet = "Metadata")
 
-data <- read_excel("~/GITHUB/144l_students/Input_Data/week4/ACIDD_Exp_TOC.xlsx", sheet = "Data")
+data1 <- read_excel("~/GITHUB/144l_students/Input_Data/week4/144L_2018_Exp_TOC.xlsx", sheet = "Data")
 
 ```
 
 ```{r}
-glimpse(metadata)
-glimpse(data)
+glimpse(metadata1)
+glimpse(data1)
 ```
 
 # Prepare data
 
 ```{r warning=FALSE}
-joined <- left_join(metadata, data)
+joined1 <- left_join(metadata1, data1)
 
-toc <- joined %>% 
+toc1 <- joined1 %>% 
   mutate(Datetime = ymd_hm(Datetime)) %>% 
   group_by(Experiment, Bottle) %>% 
   mutate(interv = interval(first(Datetime), Datetime),
@@ -50,36 +47,33 @@ toc <- joined %>%
 ```
 
 ```{r}
-glimpse(toc)
+glimpse(toc1)
 ```
-
-# Plot the curves
 
 ## Pivot data
 
 ```{r}
-pivot_toc <- toc %>% 
+pivot_toc1 <- toc1 %>% 
   select(Experiment, Location, Bottle, Treatment, days, TOC, PTOC) %>% 
   pivot_longer(TOC:PTOC, names_to = "sample", values_to = "value")
 
-pivot_toc_sd <- toc %>% 
+pivot_toc_sd1 <- toc1 %>% 
   select(Experiment, Location, Bottle, Treatment, days, sd_TOC, sd_PTOC) %>% 
   pivot_longer(sd_TOC:sd_PTOC, names_to = "sample", names_prefix = "sd_", values_to = "sd")
 
-pivoted <- left_join(pivot_toc, pivot_toc_sd) %>% 
+pivoted1 <- left_join(pivot_toc1, pivot_toc_sd1) %>% 
   mutate(sample = ifelse(sample == "TOC", "Bottle", "Vial"))
 
-glimpse(pivoted)
+glimpse(pivoted1)
 ```
 
-# Plot
+#Plot
 
-```{r}
-custom.colors <- c("Control" = "#377EB8", "Ash Leachate" = "#4DAF4A", "Santa Barbara" = "#E41A1C", "San Diego" = "#FF7F00", "Vial" = "#377EB8", "Bottle" = "#E41A1C")
-levels <- c("Control", "Ash Leachate", "San Diego", "Santa Barbara", "Bottle", "Vial")
+```{r fig.height=7, fig.width=8}
+custom.colors <- c("Control" = "#377EB8", "Ash Leachate" = "#4DAF4A", "Mud Leachate" = "#E41A1C", "Glucose_Nitrate_Phosphate" = "#FF7F00", "Vial" = "#377EB8", "Bottle" = "#E41A1C")
+levels <- c("Control", "Ash Leachate", "Mud Leachate", "Glucose_Nitrate_Phosphate", "Bottle", "Vial")
 
-pivoted %>% 
-  filter(Location == "Santa Barbara") %>% 
+pivoted1 %>% 
   drop_na(value) %>% 
   mutate(Treatment = factor(Treatment, levels = levels),
          sample = factor(sample, levels = levels)) %>% 
@@ -94,54 +88,50 @@ pivoted %>%
   guides(color = F)
 ```
 
-The analytical detection limit for our TOC analysis is ~1.5µmol C L^-1^.
-
 #TOC v PTOC (bottle v vial samples)
-
 ```{r}
-# install.packages("lmodel2")
+#install.packages("lmodel2")
 library(lmodel2)
 
-reg.data <- toc %>% 
+reg.data <- toc1 %>% 
   drop_na(TOC) %>% 
   filter(Timepoint > 0)
 
-reg <- lmodel2(PTOC ~ TOC, data = reg.data, nperm = 99)
+reg1 <- lmodel2(PTOC ~ TOC, data = reg.data, nperm = 99)
 ```
 
 ```{r}
-reg
+reg1
 ```
 
 ```{r}
-intercept <- reg$regression.results[3, 2]
-slope <- reg$regression.results[3, 3]
+intercept <- reg1$regression.results[3, 2]
+slope <- reg1$regression.results[3, 3]
 
-two_int <- reg$confidence.intervals[3, 2]
-two_slope <- reg$confidence.intervals[3, 4]
-nine_int <- reg$confidence.intervals[3, 3]
-nine_slope <- reg$confidence.intervals[3, 5]
 
+two_int <- reg1$confidence.intervals[3, 2]
+two_slope <- reg1$confidence.intervals[3, 4]
+nine_int <- reg1$confidence.intervals[3, 3]
+nine_slope <- reg1$confidence.intervals[3, 5]
 ```
 
-```{r fig.height=4, fig.width=5}
+```{r fig.height=10, fig.width=15}
 reg.data %>% 
   ggplot(aes(x = TOC, y = PTOC)) +
   geom_errorbar(aes(ymin = PTOC - sd_PTOC, ymax = PTOC + sd_PTOC), width = 0.05) +
-  geom_errorbarh(aes(xmin = TOC - sd_TOC, xmax = PTOC + sd_PTOC), width = 0.05) +
-  geom_point(shape = 21, size = 4, alpha = 0.7) +
+  geom_point(fill = "white", shape = 21, size = 4, alpha = 0.7) +
   geom_abline(intercept = intercept, slope = slope, color = "black", linetype = 2, size = 1) +
   geom_abline(intercept = two_int, slope = two_slope, color = "black", linetype = 3, size = 1) +
   geom_abline(intercept = nine_int, slope = nine_slope, color = "black", linetype = 3, size = 1) +
   labs(x = expression("Bottle TOC, µmol C L"^-1), y = expression("Vial TOC, µmol C L"^-1)) +
   theme_bw() +
-  annotate( geom = "text", label = expression(atop("y = 0.72x + 19.8", paste("r"^2, " = 0.97, ", italic("p "), "= 0.01"))), x = 70, y = 74, size = 4)
+  annotate(geom = "text", label = expression(atop("y = 1.03x - 2.12", paste("r"^2, " = 0.92, ", italic("p "), "= 3.62 * 10^-9"))), x = 75, y = 74, size = 3)
 ```
 
 ```{r}
-bc <- read_rds("~/GITHUB/144l_students/Output_Data/week3/ACIDD_Exp_Processed_BactAbund.rds")
+bc1 <- read_rds("~/GITHUB/144l_students/Output_Data/week3/BactAbundanceAnalysis.rds")
 
-merge <- left_join(toc, bc) %>% 
+merge <- left_join(toc1, bc1) %>% 
   select(Experiment:days, TOC:sd_PTOC, cells:diff_ln_cells, bc, ave_bc, sd_bc, everything(), -c(contains("Sample")) ) %>% 
   group_by(Experiment, Treatment, Bottle) %>% 
   fill(exp_start:sd_lag) %>% 
@@ -160,23 +150,17 @@ subset <- merge %>%
 library(zoo)
 ```
 
-We only want to interpolate winithn an experiment and not across experiments, so we'll perform the interpolation by using the split-apply-combine strategy.
-
-- split the dataframe into a list of its elements (in this case, experiments and bottles)
-- apply the interpolation function to each of the list of elements
-- combine the results into a new dataframe
-
 ## Split
 
 ```{r}
-to_interpolate <- merge %>% 
+to_interpolate1 <- merge %>% 
   select(Experiment, Bottle, Timepoint, days, PTOC, bc) %>% 
   group_by(Experiment, Bottle) #first define the grouping of dataframe
 
-list <- to_interpolate %>% 
+list <- to_interpolate1 %>% 
   group_split() #then convert dataframe into a list, broken up by groups (list elements)
 
-keys <- to_interpolate %>% 
+keys <- to_interpolate1 %>% 
   group_keys() %>% 
   mutate(key = paste(Experiment, Bottle))
 
@@ -194,6 +178,7 @@ interp.func <- function(x) {
   as_tibble(z) #convert to dataframe
 }
 ```
+
 
 ## Apply and Combine
 
@@ -221,10 +206,6 @@ doc <- interpolated %>%
   fill(doc_exp_end:bge, .direction = "downup") %>% 
   ungroup()
 
-subset <- doc %>% 
-  select(Experiment, Bottle, Timepoint, exp_end, days, doc, bioav_doc) %>% 
-  filter(Experiment == "ASH172")
-
 
 glimpse(doc)
 ```
@@ -248,19 +229,10 @@ averages <- doc %>%
   ungroup()
 ```
 
-```{r}
-subset <- averages %>% 
-  filter(Experiment == "ASH172") %>% 
-  select(Experiment, Treatment, Bottle, Timepoint, PTOC, ave_toc:sd_bge)
-
-glimpse(subset)
-```
-
 #Plot treatment curves (TOC)
 
 ```{r}
 averages %>% 
-  filter(Location == "Santa Barbara") %>% 
   mutate(Treatment = factor(Treatment, levels = levels)) %>%
   drop_na(ave_toc) %>% 
   ggplot(aes(x = days, y = ave_toc, group = interaction (Experiment, Treatment))) +
@@ -276,12 +248,10 @@ averages %>%
 ```
 
 # Plot treatment averages (bars)
-
 ```{r}
 bar.data <- averages %>% 
   select(Location, Treatment, ave_bioav_doc:sd_bge) %>% 
-  distinct() %>% 
-  filter(Location == "Santa Barbara")
+  distinct()
 ```
 
 ```{r}
@@ -328,11 +298,10 @@ bge <- bar.data %>%
 library(patchwork)
 ```
 
-```{r fig.height=10, fig.width=4}
-deldoc / total_deldoc / bioav / bge + plot_annotation(title = "Santa Barbara Experiments", tag_levels = "a")
+```{r fig.height=20, fig.width=10, warning=FALSE}
+deldoc / total_deldoc / bioav / bge + plot_annotation(title = "Campus Point Experiments", tag_levels = "a")
 ```
 
 ```{r}
-saveRDS(averages, "~/GITHUB/144l_students/Output_Data/week4/ACIDD_Exp_Processed_DOC_BGE.rds")
+saveRDS(averages, "~/GITHUB/144l_students/Output_Data/week4/TOCDOCProcessed.rds")
 ```
-
