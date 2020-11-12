@@ -661,9 +661,9 @@ assignments, one with just all the taxa)
 these are the tables you want to save
 
 ``` r
-saveRDS(t(seqtab.nochim), "~/GITHUB/144l_students/Output_Data/week5/seqtab-nochimtaxa.rds")
-saveRDS(taxa, "~/GITHUB/144l_students/Output_Data/week5/taxa.rds")
+saveRDS(t(seqtab.nochim), "~/GITHUB/144l_students/Output_Data/week5/seqtab-nochimtaxa123.rds")
+saveRDS(taxa, "~/GITHUB/144l_students/Output_Data/week5/taxa123.rds")
 
-saveRDS(t(seqtab.nochim), "~/GITHUB/144l_students/Input_Data/week6/seqtab-nochimtaxa.rds")
-saveRDS(taxa, "~/GITHUB/144l_students/Input_Data/week6/taxa.rds")
+saveRDS(t(seqtab.nochim), "~/GITHUB/144l_students/Input_Data/week6/seqtab-nochimtaxa123.rds")
+saveRDS(taxa, "~/GITHUB/144l_students/Input_Data/week6/taxa123.rds")
 ```
