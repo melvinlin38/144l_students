@@ -122,7 +122,7 @@ ps_min <- rarefy_even_depth(sub_ps, sample.size = min(sample_sums(sub_ps)))
 
     ## ...
 
-    ## 133OTUs were removed because they are no longer 
+    ## 146OTUs were removed because they are no longer 
     ## present in any sample after random subsampling
 
     ## ...
@@ -197,33 +197,37 @@ nmds123 <- ordinate(ps_min, method = "NMDS", distance = "bray")
 
     ## Square root transformation
     ## Wisconsin double standardization
-    ## Run 0 stress 0.08071864 
-    ## Run 1 stress 0.1433291 
-    ## Run 2 stress 0.08094474 
-    ## ... Procrustes: rmse 0.01215257  max resid 0.04403972 
-    ## Run 3 stress 0.08071864 
-    ## ... Procrustes: rmse 4.310319e-06  max resid 1.266667e-05 
+    ## Run 0 stress 0.08995352 
+    ## Run 1 stress 0.1451033 
+    ## Run 2 stress 0.08995352 
+    ## ... Procrustes: rmse 1.14422e-05  max resid 3.518194e-05 
     ## ... Similar to previous best
-    ## Run 4 stress 0.09779019 
-    ## Run 5 stress 0.1502395 
-    ## Run 6 stress 0.08327562 
-    ## Run 7 stress 0.1741439 
-    ## Run 8 stress 0.08322669 
-    ## Run 9 stress 0.1406806 
-    ## Run 10 stress 0.2348391 
-    ## Run 11 stress 0.144643 
-    ## Run 12 stress 0.09729532 
-    ## Run 13 stress 0.1679128 
-    ## Run 14 stress 0.1572367 
-    ## Run 15 stress 0.08322669 
-    ## Run 16 stress 0.1759864 
-    ## Run 17 stress 0.1717341 
-    ## Run 18 stress 0.08071864 
-    ## ... Procrustes: rmse 1.071212e-05  max resid 3.782928e-05 
-    ## ... Similar to previous best
-    ## Run 19 stress 0.09729532 
-    ## Run 20 stress 0.09739823 
-    ## *** Solution reached
+    ## Run 3 stress 0.08986974 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.01082414  max resid 0.03818101 
+    ## Run 4 stress 0.09058713 
+    ## Run 5 stress 0.1559118 
+    ## Run 6 stress 0.1058959 
+    ## Run 7 stress 0.1706801 
+    ## Run 8 stress 0.09058713 
+    ## Run 9 stress 0.1692369 
+    ## Run 10 stress 0.1629865 
+    ## Run 11 stress 0.1389386 
+    ## Run 12 stress 0.08987172 
+    ## ... Procrustes: rmse 0.01427207  max resid 0.0385696 
+    ## Run 13 stress 0.1450723 
+    ## Run 14 stress 0.1620646 
+    ## Run 15 stress 0.09058714 
+    ## Run 16 stress 0.1450694 
+    ## Run 17 stress 0.1037267 
+    ## Run 18 stress 0.08986291 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.009071847  max resid 0.0336529 
+    ## Run 19 stress 0.1022843 
+    ## Run 20 stress 0.1032408 
+    ## *** No convergence -- monoMDS stopping criteria:
+    ##     19: stress ratio > sratmax
+    ##      1: scale factor of the gradient < sfgrmin
 
 ``` r
 #stress = 0.9
