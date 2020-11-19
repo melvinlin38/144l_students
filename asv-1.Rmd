@@ -281,3 +281,23 @@ saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_ob
 saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
 
 ```
+
+```{r}
+saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
+saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
+saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
+saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
+
+```
+
+```{r}
+saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
+saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
+saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
+saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
+
+```
+
+```{r}
+BiocManager::install("phyloseq")
+```

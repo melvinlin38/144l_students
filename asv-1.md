@@ -197,37 +197,38 @@ nmds123 <- ordinate(ps_min, method = "NMDS", distance = "bray")
 
     ## Square root transformation
     ## Wisconsin double standardization
-    ## Run 0 stress 0.08995352 
-    ## Run 1 stress 0.1451033 
-    ## Run 2 stress 0.08995352 
-    ## ... Procrustes: rmse 1.14422e-05  max resid 3.518194e-05 
+    ## Run 0 stress 0.08432282 
+    ## Run 1 stress 0.1425271 
+    ## Run 2 stress 0.08432282 
+    ## ... Procrustes: rmse 5.197394e-06  max resid 1.221942e-05 
     ## ... Similar to previous best
-    ## Run 3 stress 0.08986974 
+    ## Run 3 stress 0.08512198 
+    ## Run 4 stress 0.08420466 
     ## ... New best solution
-    ## ... Procrustes: rmse 0.01082414  max resid 0.03818101 
-    ## Run 4 stress 0.09058713 
-    ## Run 5 stress 0.1559118 
-    ## Run 6 stress 0.1058959 
-    ## Run 7 stress 0.1706801 
-    ## Run 8 stress 0.09058713 
-    ## Run 9 stress 0.1692369 
-    ## Run 10 stress 0.1629865 
-    ## Run 11 stress 0.1389386 
-    ## Run 12 stress 0.08987172 
-    ## ... Procrustes: rmse 0.01427207  max resid 0.0385696 
-    ## Run 13 stress 0.1450723 
-    ## Run 14 stress 0.1620646 
-    ## Run 15 stress 0.09058714 
-    ## Run 16 stress 0.1450694 
-    ## Run 17 stress 0.1037267 
-    ## Run 18 stress 0.08986291 
+    ## ... Procrustes: rmse 0.01141401  max resid 0.04288341 
+    ## Run 5 stress 0.08557452 
+    ## Run 6 stress 0.08488061 
+    ## Run 7 stress 0.1612719 
+    ## Run 8 stress 0.08488061 
+    ## Run 9 stress 0.1345651 
+    ## Run 10 stress 0.1918244 
+    ## Run 11 stress 0.1351524 
+    ## Run 12 stress 0.08557452 
+    ## Run 13 stress 0.1576264 
+    ## Run 14 stress 0.09509775 
+    ## Run 15 stress 0.08488061 
+    ## Run 16 stress 0.1733796 
+    ## Run 17 stress 0.08420467 
+    ## ... Procrustes: rmse 1.500998e-05  max resid 4.476839e-05 
+    ## ... Similar to previous best
+    ## Run 18 stress 0.08421846 
+    ## ... Procrustes: rmse 0.01310221  max resid 0.04780048 
+    ## Run 19 stress 0.09530017 
+    ## Run 20 stress 0.08420466 
     ## ... New best solution
-    ## ... Procrustes: rmse 0.009071847  max resid 0.0336529 
-    ## Run 19 stress 0.1022843 
-    ## Run 20 stress 0.1032408 
-    ## *** No convergence -- monoMDS stopping criteria:
-    ##     19: stress ratio > sratmax
-    ##      1: scale factor of the gradient < sfgrmin
+    ## ... Procrustes: rmse 1.327831e-05  max resid 3.281521e-05 
+    ## ... Similar to previous best
+    ## *** Solution reached
 
 ``` r
 #stress = 0.9
@@ -428,3 +429,32 @@ saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
 saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
 saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
 ```
+
+``` r
+saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
+saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
+saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
+saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
+```
+
+``` r
+saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
+saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
+saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
+saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
+```
+
+``` r
+BiocManager::install("phyloseq")
+```
+
+    ## Bioconductor version 3.12 (BiocManager 1.30.10), R 4.0.3 (2020-10-10)
+
+    ## Installing package(s) 'phyloseq'
+
+    ## Warning: package 'phyloseq' is in use and will not be installed
+
+    ## Installation path not writeable, unable to update packages: codetools,
+    ##   KernSmooth, nlme
+
+    ## Old packages: 'colorspace', 'dada2', 'lubridate', 'magrittr', 'vctrs'
