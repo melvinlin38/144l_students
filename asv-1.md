@@ -122,7 +122,7 @@ ps_min <- rarefy_even_depth(sub_ps, sample.size = min(sample_sums(sub_ps)))
 
     ## ...
 
-    ## 135OTUs were removed because they are no longer 
+    ## 133OTUs were removed because they are no longer 
     ## present in any sample after random subsampling
 
     ## ...
@@ -197,35 +197,32 @@ nmds123 <- ordinate(ps_min, method = "NMDS", distance = "bray")
 
     ## Square root transformation
     ## Wisconsin double standardization
-    ## Run 0 stress 0.09197528 
-    ## Run 1 stress 0.1477846 
-    ## Run 2 stress 0.08332018 
-    ## ... New best solution
-    ## ... Procrustes: rmse 0.03626168  max resid 0.143756 
-    ## Run 3 stress 0.08399251 
-    ## Run 4 stress 0.08295297 
-    ## ... New best solution
-    ## ... Procrustes: rmse 0.01881674  max resid 0.07394204 
-    ## Run 5 stress 0.1552092 
-    ## Run 6 stress 0.0835558 
-    ## Run 7 stress 0.1662889 
-    ## Run 8 stress 0.0829534 
-    ## ... Procrustes: rmse 0.0002131987  max resid 0.0007298317 
+    ## Run 0 stress 0.08071864 
+    ## Run 1 stress 0.1433291 
+    ## Run 2 stress 0.08094474 
+    ## ... Procrustes: rmse 0.01215257  max resid 0.04403972 
+    ## Run 3 stress 0.08071864 
+    ## ... Procrustes: rmse 4.310319e-06  max resid 1.266667e-05 
     ## ... Similar to previous best
-    ## Run 9 stress 0.165792 
-    ## Run 10 stress 0.1284015 
-    ## Run 11 stress 0.1271539 
-    ## Run 12 stress 0.08399251 
-    ## Run 13 stress 0.1616309 
-    ## Run 14 stress 0.1585602 
-    ## Run 15 stress 0.08295299 
-    ## ... Procrustes: rmse 3.6225e-05  max resid 9.669599e-05 
+    ## Run 4 stress 0.09779019 
+    ## Run 5 stress 0.1502395 
+    ## Run 6 stress 0.08327562 
+    ## Run 7 stress 0.1741439 
+    ## Run 8 stress 0.08322669 
+    ## Run 9 stress 0.1406806 
+    ## Run 10 stress 0.2348391 
+    ## Run 11 stress 0.144643 
+    ## Run 12 stress 0.09729532 
+    ## Run 13 stress 0.1679128 
+    ## Run 14 stress 0.1572367 
+    ## Run 15 stress 0.08322669 
+    ## Run 16 stress 0.1759864 
+    ## Run 17 stress 0.1717341 
+    ## Run 18 stress 0.08071864 
+    ## ... Procrustes: rmse 1.071212e-05  max resid 3.782928e-05 
     ## ... Similar to previous best
-    ## Run 16 stress 0.1585255 
-    ## Run 17 stress 0.1796713 
-    ## Run 18 stress 0.08422527 
-    ## Run 19 stress 0.090404 
-    ## Run 20 stress 0.1271619 
+    ## Run 19 stress 0.09729532 
+    ## Run 20 stress 0.09739823 
     ## *** Solution reached
 
 ``` r
