@@ -122,7 +122,7 @@ ps_min <- rarefy_even_depth(sub_ps, sample.size = min(sample_sums(sub_ps)))
 
     ## ...
 
-    ## 146OTUs were removed because they are no longer 
+    ## 132OTUs were removed because they are no longer 
     ## present in any sample after random subsampling
 
     ## ...
@@ -197,38 +197,32 @@ nmds123 <- ordinate(ps_min, method = "NMDS", distance = "bray")
 
     ## Square root transformation
     ## Wisconsin double standardization
-    ## Run 0 stress 0.08432282 
-    ## Run 1 stress 0.1425271 
-    ## Run 2 stress 0.08432282 
-    ## ... Procrustes: rmse 5.197394e-06  max resid 1.221942e-05 
-    ## ... Similar to previous best
-    ## Run 3 stress 0.08512198 
-    ## Run 4 stress 0.08420466 
-    ## ... New best solution
-    ## ... Procrustes: rmse 0.01141401  max resid 0.04288341 
-    ## Run 5 stress 0.08557452 
-    ## Run 6 stress 0.08488061 
-    ## Run 7 stress 0.1612719 
-    ## Run 8 stress 0.08488061 
-    ## Run 9 stress 0.1345651 
-    ## Run 10 stress 0.1918244 
-    ## Run 11 stress 0.1351524 
-    ## Run 12 stress 0.08557452 
-    ## Run 13 stress 0.1576264 
-    ## Run 14 stress 0.09509775 
-    ## Run 15 stress 0.08488061 
-    ## Run 16 stress 0.1733796 
-    ## Run 17 stress 0.08420467 
-    ## ... Procrustes: rmse 1.500998e-05  max resid 4.476839e-05 
-    ## ... Similar to previous best
-    ## Run 18 stress 0.08421846 
-    ## ... Procrustes: rmse 0.01310221  max resid 0.04780048 
-    ## Run 19 stress 0.09530017 
-    ## Run 20 stress 0.08420466 
-    ## ... New best solution
-    ## ... Procrustes: rmse 1.327831e-05  max resid 3.281521e-05 
-    ## ... Similar to previous best
-    ## *** Solution reached
+    ## Run 0 stress 0.09446127 
+    ## Run 1 stress 0.1603154 
+    ## Run 2 stress 0.178034 
+    ## Run 3 stress 0.09494371 
+    ## ... Procrustes: rmse 0.01237789  max resid 0.04503992 
+    ## Run 4 stress 0.1001001 
+    ## Run 5 stress 0.1676289 
+    ## Run 6 stress 0.09627746 
+    ## Run 7 stress 0.1841092 
+    ## Run 8 stress 0.09627746 
+    ## Run 9 stress 0.1815257 
+    ## Run 10 stress 0.2548694 
+    ## Run 11 stress 0.1997572 
+    ## Run 12 stress 0.0996006 
+    ## Run 13 stress 0.1383403 
+    ## Run 14 stress 0.1005521 
+    ## Run 15 stress 0.09627746 
+    ## Run 16 stress 0.09627745 
+    ## Run 17 stress 0.1715422 
+    ## Run 18 stress 0.09494367 
+    ## ... Procrustes: rmse 0.01237858  max resid 0.04504492 
+    ## Run 19 stress 0.1005521 
+    ## Run 20 stress 0.09906522 
+    ## *** No convergence -- monoMDS stopping criteria:
+    ##     16: stress ratio > sratmax
+    ##      4: scale factor of the gradient < sfgrmin
 
 ``` r
 #stress = 0.9
@@ -429,32 +423,3 @@ saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
 saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
 saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
 ```
-
-``` r
-saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
-saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
-saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
-saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
-```
-
-``` r
-saveRDS(sweet.tab, "~/GITHUB/144l_students/Output_Data/week6/Custom_ASV_Table123.rds")
-saveRDS(sub_ps, "~/GITHUB/144l_students/Output_Data/week6/phyloseq_obj123.rds")
-saveRDS(ps_min, "~/GITHUB/144l_students/Output_Data/week6/subsampled_phyloseq_obj123.rds")
-saveRDS(alphadiv, "~/GITHUB/144l_students/Output_Data/week6/alphadiv123.rds")
-```
-
-``` r
-BiocManager::install("phyloseq")
-```
-
-    ## Bioconductor version 3.12 (BiocManager 1.30.10), R 4.0.3 (2020-10-10)
-
-    ## Installing package(s) 'phyloseq'
-
-    ## Warning: package 'phyloseq' is in use and will not be installed
-
-    ## Installation path not writeable, unable to update packages: codetools,
-    ##   KernSmooth, nlme
-
-    ## Old packages: 'colorspace', 'dada2', 'lubridate', 'magrittr', 'vctrs'
